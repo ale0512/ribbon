@@ -1,0 +1,5 @@
+2015-02-03 21:54:45  [ main:0 ] - [ INFO ]  Log Path:D:\workspace\org.ribbon\target\logs
+2015-02-03 21:54:45  [ main:4 ] - [ INFO ]  Properties:/D:/workspace/org.ribbon/target/classes/
+2015-02-03 21:54:45  [ main:39 ] - [ DEBUG ]  About to wait.
+2015-02-03 21:54:45  [ NioProcessor-2:59 ] - [ DEBUG ]  创建客户端会话：/127.0.0.1:20000
+2015-02-03 21:54:45  [ NioProcessor-2:59 ] - [ DEBUG ]  客户端: /127.0.0.1:20000
