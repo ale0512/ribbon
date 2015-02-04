@@ -27,11 +27,7 @@ public class RztClient {
         
       //设定这个过滤器将一行一行(/r/n)的读取数据     
         chain.addLast("chain", new ProtocolCodecFilter(new ObjectSerializationCodecFactory()));
-        
-        
 		connector.setHandler(new RztClientHandler());
-		
-		
 		ConnectFuture connFuture = connector.connect(new InetSocketAddress(PropertiesLoader
 				.getRztHost(), PropertiesLoader.getRztPort()));
 

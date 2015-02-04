@@ -17,7 +17,6 @@ public class RibbonBridge implements Runnable{
 	public void start() {
 		RztMessage rztMessage = MessageUtils.build(this.getContent());
 		build(rztMessage);
-		System.out.println("Thread Id:"+Thread.currentThread().getId());
 	}
 
 	public static void build(RztMessage message) {

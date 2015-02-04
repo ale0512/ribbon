@@ -12,6 +12,9 @@ public class Constants {
 	 */
 	public static final String SIGN_COMMA = ",";
 	
+	public static final String SUCCESS = "RZT/1.0 200 OK\r\n";
+	public static final String ERROR = "RZT/1.0 400 OK\r\n";
+	
 	public static final String SIMPLE="MAKECALL RZT/1.0 \n" +
 			"Caller: 8001,8002,8003 \n" +
 			"Call-Caller-Mode: order \n" +
