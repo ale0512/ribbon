@@ -25,13 +25,11 @@ public class RztProtocolHandler extends IoHandlerAdapter {
     @Override
     public void messageReceived(IoSession session, Object message) {
         IoBuffer bbuf = (IoBuffer) message;
-
         byte[] byten = new byte[bbuf.limit()];
         bbuf.get(byten, bbuf.position(), bbuf.limit());
-        System.out.println("客户端收到消息" + ByteAndStr16.Bytes2HexString(byten));
-//        IoBuffer buffer = IoBuffer.allocate(10);
-//        buffer.put(bts);
-//        buffer.flip();
+        String sms = ByteAndStr16.toStringHex2(byten);
+        LOGGER.debug("客户端收到消息" + sms);
+        bbuf.flip();
 //        session.write(buffer);
 //        String s = null;
 //        try {
@@ -45,6 +43,8 @@ public class RztProtocolHandler extends IoHandlerAdapter {
 //		bridge.setContent(s);
 //		Thread thread = new Thread(bridge);
 //		thread.start();
+        byte[] success = {73,75,63,63,65,73,73} ;
+        session.write(success);
     }
 
     @Override

@@ -21,7 +21,7 @@ public class ByteAndStr16 {
             buff[3 * i + 2] = 45;
         }
         String re = new String(buff);
-        return re.replace("-", " ");
+        return re.replace("-", "");
     }
     // 从十六进制字符串到字节数组转换
     public static byte[] HexString2Bytes(String hexstr) {
@@ -34,5 +34,28 @@ public class ByteAndStr16 {
             b[i] = (byte) ((parse(c0) << 4) | parse(c1));
         }
         return b;
+    }
+
+    // 转化十六进制编码为字符串
+    public static String toStringHex2(String s) {
+        byte[] baKeyword = new byte[s.length() / 2];
+        for (int i = 0; i < baKeyword.length; i++) {
+            try {
+                baKeyword[i] = (byte) (0xff & Integer.parseInt(s.substring(
+                        i * 2, i * 2 + 2), 16));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            s = new String(baKeyword, PropertiesLoader.getCharset());// UTF-16le:Not
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        return s;
+    }
+
+    public static String toStringHex2(byte[] b){
+        return toStringHex2(Bytes2HexString(b));
     }
 }
