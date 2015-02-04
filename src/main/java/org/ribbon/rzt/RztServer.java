@@ -2,7 +2,6 @@ package org.ribbon.rzt;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.nio.charset.Charset;
 
 import org.apache.mina.core.filterchain.DefaultIoFilterChainBuilder;
 import org.apache.mina.core.session.IdleStatus;
@@ -45,8 +44,9 @@ public class RztServer {
 		DefaultIoFilterChainBuilder chain = acceptor.getFilterChain();
 
 		// 协议解析
-		chain.addLast("codec", new ProtocolCodecFilter(new ObjectSerializationCodecFactory()));
-//        chain.addLast("codec",new ProtocolCodecFilter(new TextLineCodecFactory(Charset.forName(PropertiesLoader.getCharset()))));
+        chain.addLast("myChin", new ProtocolCodecFilter(new TextLineCodecFactory()));
+//		chain.addLast("codec", new ProtocolCodecFilter(new ObjectSerializationCodecFactory()));
+
 		try {
 			addLogger(chain);
 		} catch (Exception e) {
@@ -56,8 +56,8 @@ public class RztServer {
 		// 设置消息处理类（创建、关闭Session，可读可写等等，继承自接口IoHandler）
 		acceptor.setHandler(new RztProtocolHandler());
 		// 设置接收缓存区大小
-		acceptor.getSessionConfig().setReadBufferSize(2048);
-		acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, 10);
+//		acceptor.getSessionConfig().setReadBufferSize(2048);
+//		acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, 10);
 		try {
 			// 服务器开始监听
 			acceptor.bind(new InetSocketAddress(PORT));
