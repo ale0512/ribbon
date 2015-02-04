@@ -4,8 +4,11 @@ import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 import org.ribbon.bridge.RibbonBridge;
+import org.ribbon.util.PropertiesLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.UnsupportedEncodingException;
 
 public class RztProtocolHandler extends IoHandlerAdapter {
 	private final static Logger LOGGER = LoggerFactory.getLogger(RztProtocolHandler.class);
@@ -19,13 +22,17 @@ public class RztProtocolHandler extends IoHandlerAdapter {
     
     @Override
     public void messageReceived(IoSession session, Object message) {
-    	String s = (String)message; 
-    	LOGGER.debug("客户端返回的数据：" + s);
+        String s = null;
+        try {
+            s = new String(message.toString().getBytes(PropertiesLoader.getCharset()),"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            LOGGER.debug("字符集编码错误"+PropertiesLoader.getCharset()+">+UTF-8");
+        }
+        LOGGER.debug("客户端返回的数据：" + s);
 		RibbonBridge bridge = new RibbonBridge();
 		bridge.setContent(s);
 		Thread thread = new Thread(bridge);
 		thread.start();
-    	
     }
 
     @Override

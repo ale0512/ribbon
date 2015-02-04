@@ -45,8 +45,8 @@ public class RztServer {
 		DefaultIoFilterChainBuilder chain = acceptor.getFilterChain();
 
 		// 协议解析
-//		chain.addLast("codec", new ProtocolCodecFilter(new ObjectSerializationCodecFactory(Charset.forName("UTF-8"))));
-        chain.addLast("codec",new ProtocolCodecFilter(new TextLineCodecFactory(Charset.forName(PropertiesLoader.getCharset()))));
+		chain.addLast("codec", new ProtocolCodecFilter(new ObjectSerializationCodecFactory()));
+//        chain.addLast("codec",new ProtocolCodecFilter(new TextLineCodecFactory(Charset.forName(PropertiesLoader.getCharset()))));
 		try {
 			addLogger(chain);
 		} catch (Exception e) {
