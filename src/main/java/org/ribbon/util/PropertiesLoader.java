@@ -87,6 +87,6 @@ public class PropertiesLoader {
 		return props.getValue("password");
 	}
 
-	
+	public static String getCharset(){return  props.getValue("charset");}
 	
 }

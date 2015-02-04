@@ -41,24 +41,6 @@ public class RztProtocolHandler extends IoHandlerAdapter {
 		super.sessionCreated(session);
 		LOGGER.debug(" 创建会话.....");	
 	}
-
-	/* (non-Javadoc)
-	 * @see org.apache.mina.core.service.IoHandlerAdapter#sessionIdle(org.apache.mina.core.session.IoSession, org.apache.mina.core.session.IdleStatus)
-	 */
-	@Override
-	public void sessionIdle(IoSession session, IdleStatus status) throws Exception {
-		super.sessionIdle(session, status);
-	}
-
-	/* (non-Javadoc)
-	 * @see org.apache.mina.core.service.IoHandlerAdapter#messageSent(org.apache.mina.core.session.IoSession, java.lang.Object)
-	 */
-	@Override
-	public void messageSent(IoSession session, Object message) throws Exception {
-		super.messageSent(session, message);
-	}
-
-    
 }
  
 

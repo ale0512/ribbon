@@ -2,11 +2,13 @@ package org.ribbon.rzt;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.nio.charset.Charset;
 
 import org.apache.mina.core.filterchain.DefaultIoFilterChainBuilder;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.filter.codec.serialization.ObjectSerializationCodecFactory;
+import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
 import org.apache.mina.filter.logging.LoggingFilter;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 import org.ribbon.util.PropertiesLoader;
@@ -43,8 +45,8 @@ public class RztServer {
 		DefaultIoFilterChainBuilder chain = acceptor.getFilterChain();
 
 		// 协议解析
-		chain.addLast("codec", new ProtocolCodecFilter(new ObjectSerializationCodecFactory()));
-
+//		chain.addLast("codec", new ProtocolCodecFilter(new ObjectSerializationCodecFactory(Charset.forName("UTF-8"))));
+        chain.addLast("codec",new ProtocolCodecFilter(new TextLineCodecFactory(Charset.forName(PropertiesLoader.getCharset()))));
 		try {
 			addLogger(chain);
 		} catch (Exception e) {
