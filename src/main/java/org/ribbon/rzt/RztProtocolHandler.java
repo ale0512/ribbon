@@ -25,6 +25,7 @@ public class RztProtocolHandler extends IoHandlerAdapter {
         String s = null;
         try {
             s = new String(message.toString().getBytes(PropertiesLoader.getCharset()),"UTF-8");
+            LOGGER.debug(s);
         } catch (UnsupportedEncodingException e) {
             LOGGER.debug("字符集编码错误"+PropertiesLoader.getCharset()+">+UTF-8");
         }
