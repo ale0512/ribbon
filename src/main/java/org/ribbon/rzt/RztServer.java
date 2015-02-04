@@ -46,16 +46,19 @@ public class RztServer {
 		DefaultIoFilterChainBuilder chain = acceptor.getFilterChain();
 
 		// 协议解析
-
+//        TextLineCodecFactory lineCodec=new TextLineCodecFactory(Charset.forName("UTF-8"));
+//        lineCodec.setDecoderMaxLineLength(1024*1024); //1M
+//        lineCodec.setEncoderMaxLineLength(1024*1024); //1M
+//        acceptor.getFilterChain().addLast("codec",new ProtocolCodecFilter(lineCodec));  //行文本解析
 //        chain.addLast("myChin", new ProtocolCodecFilter(new TextLineCodecFactory()));
-        chain.addLast("codec",new ProtocolCodecFilter(new PrefixedStringCodecFactory(Charset.forName(PropertiesLoader.getCharset()))));
-//		chain.addLast("codec", new ProtocolCodecFilter(new ObjectSerializationCodecFactory()));
+//        chain.addLast("codec",new ProtocolCodecFilter(new PrefixedStringCodecFactory(Charset.forName(PropertiesLoader.getCharset()))));
+//		chain.addLast("objectFilter", new ProtocolCodecFilter(new ObjectSerializationCodecFactory()));
 
-		try {
-			addLogger(chain);
-		} catch (Exception e) {
-			log.error(e.toString());
-		}
+//		try {
+//			addLogger(chain);
+//		} catch (Exception e) {
+//			log.error(e.toString());
+//		}
 		// Bind
 		// 设置消息处理类（创建、关闭Session，可读可写等等，继承自接口IoHandler）
 		acceptor.setHandler(new RztProtocolHandler());
